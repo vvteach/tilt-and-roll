@@ -1,0 +1,13 @@
+plugins {
+    id 'com.android.application' version '8.13.0' apply false
+}
+
+ext {
+    appName = 'Tilt and roll!'
+    gdxVersion = '1.14.2'
+}
+
+allprojects {
+    group = 'com.codex.gravitytilt'
+    version = '1.0.0'
+}
