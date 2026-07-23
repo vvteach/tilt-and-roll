@@ -35,9 +35,9 @@ Class diagram: [CLASS_DIAGRAM.md](CLASS_DIAGRAM.md)
 
 ## Демо-видео
 
-<video src="TiltAndRoll.mp4" controls width="720"></video>
+[![Демо-видео Tilt and roll!](core/assets/textures/splash.png)](TiltAndRoll.mp4)
 
-[Скачать или открыть видео](TiltAndRoll.mp4)
+[Открыть демо-видео](TiltAndRoll.mp4)
 
 ## Запуск
 
