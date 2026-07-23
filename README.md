@@ -2,7 +2,6 @@
 
 Небольшой кроссплатформенный прототип игры на LibGDX и Box2D для desktop и Android.
 ![Splash screen](core/assets/textures/splash.png)
-External splash image: [GitHub attachment](https://github.com/user-attachments/assets/d77ad6f4-db7a-41c3-9ff3-2bb4807d14ce)
 
 
 
@@ -34,9 +33,11 @@ Class diagram: [CLASS_DIAGRAM.md](CLASS_DIAGRAM.md)
 
 [Download Android APK](tilt-and-roll-debug.apk)
 
-## Video
+## Демо-видео
 
-[Watch demo](TiltAndRoll.mp4)
+<video src="TiltAndRoll.mp4" controls width="720"></video>
+
+[Скачать или открыть видео](TiltAndRoll.mp4)
 
 ## Запуск
 
