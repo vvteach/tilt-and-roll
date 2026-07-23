@@ -29,6 +29,10 @@
 
 [Download Android APK](tilt-and-roll-debug.apk)
 
+## Video
+
+[Watch demo](TiltAndRoll.mp4)
+
 ## Запуск
 
 Нужны JDK 17+ и Gradle 8.13+. Если Gradle установлен:
