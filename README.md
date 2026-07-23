@@ -1,6 +1,8 @@
 # Tilt and roll!
 
 Небольшой кроссплатформенный прототип игры на LibGDX и Box2D для desktop и Android.
+![Splash screen](core/assets/textures/splash.png)
+
 
 ## Идея
 
@@ -22,6 +24,10 @@
 - Игровые сущности хранятся в одном `Array<GameObject>`, а Box2D `Fixture.userData` ссылается на сами объекты.
 - `lwjgl3` - desktop launcher.
 - `android` - Android launcher и manifest.
+
+## APK
+
+[Download Android APK](tilt-and-roll-debug.apk)
 
 ## Запуск
 
