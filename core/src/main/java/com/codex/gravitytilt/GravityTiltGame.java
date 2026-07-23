@@ -308,7 +308,7 @@ public class GravityTiltGame extends ApplicationAdapter {
             direction += 1f;
         }
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            direction += MathUtils.clamp(-Gdx.input.getAccelerometerY() / 4f, -1f, 1f);
+            direction += MathUtils.clamp(Gdx.input.getAccelerometerY() / 4f, -1f, 1f);
         }
         direction = MathUtils.clamp(direction, -1f, 1f);
 
@@ -525,7 +525,7 @@ public class GravityTiltGame extends ApplicationAdapter {
             float panelY = (height - panelHeight) * 0.5f;
             float margin = Math.max(18f, Math.min(34f, panelWidth * 0.055f));
             float scale = MathUtils.clamp(Math.min(panelWidth / 760f, panelHeight / 440f), 0.48f, 0.82f);
-            float y = panelY + panelHeight - margin - 18f * scale;
+            float y = panelY + panelHeight - margin - 18f * scale + 28f;
             float line = 50f * scale;
             font.setColor(Color.WHITE);
             font.getData().setScale(scale);
@@ -654,7 +654,9 @@ public class GravityTiltGame extends ApplicationAdapter {
         float touchY = height - screenY;
         float dx = screenX - centerX;
         float dy = touchY - centerY;
-        return dx * dx + dy * dy <= 42f * 42f;
+        float rawDy = screenY - centerY;
+        float hitRadius = Gdx.app.getType() == Application.ApplicationType.Android ? 76f : 42f;
+        return dx * dx + dy * dy <= hitRadius * hitRadius || dx * dx + rawDy * rawDy <= hitRadius * hitRadius;
     }
 
     public void selectLevelAt(int screenX, int screenY) {
