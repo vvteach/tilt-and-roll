@@ -25,6 +25,9 @@
 - `lwjgl3` - desktop launcher.
 - `android` - Android launcher и manifest.
 
+
+Class diagram: [CLASS_DIAGRAM.md](CLASS_DIAGRAM.md)
+
 ## APK
 
 [Download Android APK](tilt-and-roll-debug.apk)
