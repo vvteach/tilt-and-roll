@@ -18,7 +18,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.codex.gravitytilt.assets.TextureAssets;
 import com.codex.gravitytilt.effects.CoinBurst;
@@ -97,7 +97,7 @@ public class GravityTiltGame extends ApplicationAdapter {
     public void create() {
         camera = new OrthographicCamera();
         hudCamera = new OrthographicCamera();
-        viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+        viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
         shapes = new ShapeRenderer();
         batch = new SpriteBatch();
         textures = new TextureAssets();
@@ -654,9 +654,8 @@ public class GravityTiltGame extends ApplicationAdapter {
         float touchY = height - screenY;
         float dx = screenX - centerX;
         float dy = touchY - centerY;
-        float rawDy = screenY - centerY;
-        float hitRadius = Gdx.app.getType() == Application.ApplicationType.Android ? 76f : 42f;
-        return dx * dx + dy * dy <= hitRadius * hitRadius || dx * dx + rawDy * rawDy <= hitRadius * hitRadius;
+        float hitRadius = Gdx.app.getType() == Application.ApplicationType.Android ? 52f : 42f;
+        return dx * dx + dy * dy <= hitRadius * hitRadius;
     }
 
     public void selectLevelAt(int screenX, int screenY) {
