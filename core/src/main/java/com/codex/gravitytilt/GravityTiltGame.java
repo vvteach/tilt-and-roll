@@ -308,7 +308,7 @@ public class GravityTiltGame extends ApplicationAdapter {
             direction += 1f;
         }
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            direction += MathUtils.clamp(-Gdx.input.getAccelerometerX() / 4f, -1f, 1f);
+            direction += MathUtils.clamp(-Gdx.input.getAccelerometerY() / 4f, -1f, 1f);
         }
         direction = MathUtils.clamp(direction, -1f, 1f);
 
