@@ -35,9 +35,7 @@ Class diagram: [CLASS_DIAGRAM.md](CLASS_DIAGRAM.md)
 
 ## Демо-видео
 
-[![Демо-видео Tilt and roll!](core/assets/textures/splash.png)](TiltAndRoll.mp4)
-
-[Открыть демо-видео](TiltAndRoll.mp4)
+![Демо-видео Tilt and roll!](tiltandroll.gif)
 
 ## Запуск
 
