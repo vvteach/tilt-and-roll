@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.codex.gravitytilt'
-    compileSdkVersion 'android-36.1'
+    compileSdk 35
 
     defaultConfig {
         applicationId 'com.codex.gravitytilt'
@@ -22,23 +22,65 @@ android {
     sourceSets {
         main {
             assets.srcDirs = ['src/main/assets', '../core/assets']
+            jniLibs.srcDirs = ['libs']
         }
     }
 }
 
+configurations {
+    natives
+}
+
+configurations.configureEach {
+    resolutionStrategy.force 'androidx.core:core:1.16.0'
+}
+
+tasks.register('copyAndroidNatives') {
+    doFirst {
+        file('libs/armeabi-v7a').mkdirs()
+        file('libs/arm64-v8a').mkdirs()
+        file('libs/x86').mkdirs()
+        file('libs/x86_64').mkdirs()
+
+        configurations.natives.files.each { jar ->
+            def outputDir = null
+            if (jar.name.contains('natives-armeabi-v7a')) {
+                outputDir = file('libs/armeabi-v7a')
+            } else if (jar.name.contains('natives-arm64-v8a')) {
+                outputDir = file('libs/arm64-v8a')
+            } else if (jar.name.contains('natives-x86_64')) {
+                outputDir = file('libs/x86_64')
+            } else if (jar.name.contains('natives-x86')) {
+                outputDir = file('libs/x86')
+            }
+
+            if (outputDir != null) {
+                copy {
+                    from zipTree(jar)
+                    into outputDir
+                    include '*.so'
+                }
+            }
+        }
+    }
+}
+
+preBuild.dependsOn copyAndroidNatives
+
 dependencies {
     implementation project(':core')
     implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
-    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
-    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
-    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
-    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
-    implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
-    implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
-    implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
-    implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
-    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
-    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
-    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
-    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
+    natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
+    natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
+    natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
+    natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
+    natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
+    natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
 }
+
